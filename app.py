@@ -82,7 +82,7 @@ st.markdown("""
 # ============================================================================
 # THE TERMINAL CLOCK & SECTION 88 ALERT
 # ============================================================================
-st.markdown("### 🚨 NOTICE OF DELINQUENCY (Section 88(1) PFMA 2019-1)")
+st.markdown("### 🚨 NOTICE OF DELINQUENCY ")
 
 # Section 88 Quote Styled in Red
 st.markdown("""
