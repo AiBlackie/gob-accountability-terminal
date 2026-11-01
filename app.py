@@ -1,6 +1,7 @@
 import streamlit as st
 import streamlit.components.v1 as components
 from datetime import datetime
+import plotly.graph_objects as go
 
 # ============================================================================
 # PAGE CONFIGURATION
@@ -81,7 +82,7 @@ st.markdown("""
 # ============================================================================
 # THE TERMINAL CLOCK & SECTION 88 ALERT
 # ============================================================================
-st.markdown("### 🚨 NOTICE OF DELINQUENCY ")
+st.markdown("### 🚨 NOTICE OF DELINQUENCY (Section 88(1) PFMA 2019-1)")
 
 # Section 88 Quote Styled in Red
 st.markdown("""
@@ -247,7 +248,7 @@ st.markdown("---")
 # ============================================================================
 # TABS
 # ============================================================================
-tab1, tab2 = st.tabs(["📉 TERMINAL DASHBOARD", "📖 PLAIN ENGLISH GLOSSARY"])
+tab1, tab2, tab3 = st.tabs(["📉 TERMINAL DASHBOARD", "📖 PLAIN ENGLISH GLOSSARY", "🔴 THE BLACK HOLE"])
 
 # ============================================================================
 # TAB 1: THE MAIN TERMINAL DASHBOARD
@@ -442,3 +443,134 @@ with tab2:
             <p>We apply it here to indicate that the Government's financial reports are past their legal deadline.</p>
         </div>
         """, unsafe_allow_html=True)
+
+
+# ============================================================================
+# TAB 3: THE BLACK HOLE
+# ============================================================================
+with tab3:
+    st.markdown("### 🔴 THE BASIS FOR THE ADVERSE OPINION (FY 2023)")
+
+    st.markdown("""
+    <div class="terminal-card" style="border-left: 4px solid #ef4444; background-color: #2a1212;">
+        <div class="terminal-header" style="color: #ef4444; border-bottom: 1px solid #7f1d1d;">AUDITOR GENERAL'S VERDICT</div>
+        <p style="color: #fca5a5; font-size: 1.1em; font-style: italic;">
+            "The accompanying financial statements <strong>do not give a true and fair view</strong> of the financial position of the Government of Barbados... because of the significance of the matters outlined..."
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    st.markdown("Because the 2024 and 2025 financials are missing, we cannot see the current damage. But the last audited report (2023) revealed a system hemorrhaging data. Here is the visual evidence of why the books were rejected:")
+
+    # --- THE FOUR PILLARS OF FAILURE ---
+    col1, col2 = st.columns(2)
+
+    with col1:
+        st.markdown("""
+        <div class="terminal-card" style="text-align: center; border-top: 4px solid #ef4444; min-height: 180px; padding: 25px;">
+            <div style="font-size: 3.5em; font-weight: 900; color: #ef4444; font-family: 'Roboto Mono';">$2.43B</div>
+            <div style="font-size: 1.1em; font-weight: bold; color: #d1d5db; margin-top: 10px;">UNVERIFIED TAX RECEIVABLES</div>
+            <div style="font-size: 0.9em; color: #9ca3af; margin-top: 8px;">Money the government claims it is owed, but cannot prove exists.</div>
+        </div>
+        """, unsafe_allow_html=True)
+
+        st.markdown("""
+        <div class="terminal-card" style="text-align: center; border-top: 4px solid #f59e0b; min-height: 180px; padding: 25px;">
+            <div style="font-size: 3.5em; font-weight: 900; color: #f59e0b; font-family: 'Roboto Mono';">$719M</div>
+            <div style="font-size: 1.1em; font-weight: bold; color: #d1d5db; margin-top: 10px;">CAPITAL ASSET DISCREPANCY</div>
+            <div style="font-size: 0.9em; color: #9ca3af; margin-top: 8px;">The unverified gap between the Treasury's claimed assets and the subsidiary asset register.</div>
+        </div>
+        """, unsafe_allow_html=True)
+
+    with col2:
+        st.markdown("""
+        <div class="terminal-card" style="text-align: center; border-top: 4px solid #ef4444; min-height: 180px; padding: 25px;">
+            <div style="font-size: 3.5em; font-weight: 900; color: #ef4444; font-family: 'Roboto Mono';">$68.28M</div>
+            <div style="font-size: 1.1em; font-weight: bold; color: #d1d5db; margin-top: 10px;">UNEXPLAINED BAD DEBT</div>
+            <div style="font-size: 0.9em; color: #9ca3af; margin-top: 8px;">Taxes written off as "uncollectible" without sufficient documentation.</div>
+        </div>
+        """, unsafe_allow_html=True)
+
+        st.markdown("""
+        <div class="terminal-card" style="text-align: center; border-top: 4px solid #ef4444; min-height: 180px; padding: 25px;">
+            <div style="font-size: 3.5em; font-weight: 900; color: #ef4444; font-family: 'Roboto Mono';">$115M</div>
+            <div style="font-size: 1.1em; font-weight: bold; color: #d1d5db; margin-top: 10px;">CASH OVERSTATEMENT</div>
+            <div style="font-size: 0.9em; color: #9ca3af; margin-top: 8px;">Ledger errors and uncleared cheques that overstated the bank balances.</div>
+        </div>
+        """, unsafe_allow_html=True)
+
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("---")
+
+    # --- THE GAUGE CHARTS ---
+    st.markdown("### 📉 THE $2.43 BILLION TAX GAP")
+    st.markdown("The most damning finding is the tax system. The government claims to be owed **$2.43 Billion**, but the Auditor General explicitly stated they could not confirm this amount due to a lack of supporting documentation.")
+
+    col_gauge1, col_gauge2 = st.columns(2)
+
+    with col_gauge1:
+        # Chart 1: The Treasury's Claim (Full Tank)
+        fig1 = go.Figure(go.Indicator(
+            mode = "gauge+number",
+            value = 2.43,
+            domain = {'x': [0, 1], 'y': [0, 1]},
+            title = {'text': "TREASURY'S CLAIM", 'font': {'size': 20, 'color': '#60a5fa'}},
+            number = {'suffix': " Billion", 'font': {'color': '#60a5fa'}},
+            gauge = {
+                'axis': {'range': [None, 2.5], 'tickwidth': 1, 'tickcolor': "#374151"},
+                'bar': {'color': "#3b82f6"},
+                'bgcolor': "#1f2937",
+                'borderwidth': 2,
+                'bordercolor': "#374151",
+                'steps': [
+                    {'range': [0, 2.5], 'color': '#111827'}
+                ]
+            }
+        ))
+        fig1.update_layout(
+            paper_bgcolor="#0e1117",
+            font={'color': "#d1d5db", 'family': "Roboto Mono, monospace"},
+            height=300,
+            margin=dict(l=20, r=20, t=50, b=20)
+        )
+        st.plotly_chart(fig1, use_container_width=True)
+
+    with col_gauge2:
+        # Chart 2: The Auditor General's Verification (Empty Tank)
+        fig2 = go.Figure(go.Indicator(
+            mode = "gauge+number",
+            value = 0,
+            domain = {'x': [0, 1], 'y': [0, 1]},
+            title = {'text': "VERIFIED BY AUDITOR GENERAL", 'font': {'size': 20, 'color': '#ef4444'}},
+            number = {'suffix': " Verified", 'font': {'color': '#ef4444'}},
+            gauge = {
+                'axis': {'range': [None, 2.5], 'tickwidth': 1, 'tickcolor': "#374151"},
+                'bar': {'color': "#ef4444", 'thickness': 0.1}, # Empty bar
+                'bgcolor': "#1f2937",
+                'borderwidth': 2,
+                'bordercolor': "#374151",
+                'steps': [
+                    {'range': [0, 2.5], 'color': '#2a1212'} # Dark red background for empty
+                ],
+                'threshold': {
+                    'line': {'color': "red", 'width': 4},
+                    'thickness': 0.75,
+                    'value': 2.5
+                }
+            }
+        ))
+        fig2.update_layout(
+            paper_bgcolor="#0e1117",
+            font={'color': "#d1d5db", 'family': "Roboto Mono, monospace"},
+            height=300,
+            margin=dict(l=20, r=20, t=50, b=20)
+        )
+        st.plotly_chart(fig2, use_container_width=True)
+
+    st.markdown("""
+    <div class="terminal-card" style="background-color: #111827; margin-top: 20px;">
+        <div style="font-family: 'Roboto Mono', monospace; font-size: 0.9em; color: #9ca3af;">
+            <span style="color: #fbbf24;">> SYSTEM NOTE:</span> The Auditor General noted that the Barbados Revenue Authority (BRA) had <strong>excluded</strong> receivable records for Income Tax and Corporation Tax prior to 2013 for nine years. They simply stopped tracking who owed what. When they did a "clean-up" to bring the numbers forward, they could not provide the documentation to prove the new balances were real.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
