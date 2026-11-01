@@ -7,6 +7,15 @@ from datetime import datetime
 # ============================================================================
 st.set_page_config(page_title="BB Terminal: Gov't Accountability", page_icon="📉", layout="wide")
 
+# --- HIDE THE DEFAULT STREAMLIT HEADER/FOOTER ---
+st.markdown("""
+<style>
+    header {visibility: hidden;}
+    footer {visibility: hidden;}
+    .block-container {padding-top: 2rem;}
+</style>
+""", unsafe_allow_html=True)
+
 # Custom CSS for Bloomberg Terminal Aesthetic
 st.markdown("""
 <style>
@@ -70,13 +79,19 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ============================================================================
-# THE TERMINAL CLOCK (Placed BEFORE the banner)
+# THE TERMINAL CLOCK & SECTION 88 ALERT
 # ============================================================================
 st.markdown("### 🚨 NOTICE OF DELINQUENCY (Section 88(1) PFMA 2019-1)")
+
+# Section 88 Quote Styled in Red
 st.markdown("""
-**PRIMARY LEGISLATION:** Public Finance Management Act, 2019-1. 
-> *"88. (1) In respect of each financial year and within a period of **4 months** after the close of each financial year, the Accountant-General shall prepare, sign and submit..."*
-""")
+<div class="terminal-card" style="border-left: 4px solid #ef4444; background-color: #2a1212; margin-bottom: 20px;">
+    <div class="terminal-header" style="color: #ef4444; border-bottom: 1px solid #7f1d1d;">SUBMISSION REQUIREMENT (Section 88(1) PFMA 2019-1)</div>
+    <p style="color: #fca5a5; font-style: italic; font-size: 1.05em;">
+        "In respect of each financial year and within a period of <strong>4 months</strong> after the close of each financial year, the <strong>Accountant-General</strong> shall prepare, sign and submit..."
+    </p>
+</div>
+""", unsafe_allow_html=True)
 
 due_date_2024 = datetime(2024, 7, 31, 23, 59, 59)
 due_date_str = due_date_2024.strftime("%B %d, %Y %H:%M:%S")
@@ -169,7 +184,7 @@ html_clock = f"""
 components.html(html_clock, height=110)
 
 # ============================================================================
-# TOP BANNER: DELINQUENCY ALERT (Directly under the ticking clock)
+# TOP BANNER
 # ============================================================================
 banner_html = """
 <style>
@@ -332,6 +347,17 @@ with tab1:
 
     # --- TERMINAL CROSS-CHECK: DIGITAL EVIDENCE & VERIFICATION ---
     st.markdown("### 🕵️‍♂️ TERMINAL CROSS-CHECK: OFFICIAL GOVERNMENT WEBSITES")
+    
+    # Section 90 Quote Styled in Red
+    st.markdown("""
+    <div class="terminal-card" style="border-left: 4px solid #ef4444; background-color: #2a1212; margin-bottom: 20px;">
+        <div class="terminal-header" style="color: #ef4444; border-bottom: 1px solid #7f1d1d;">PUBLICATION REQUIREMENT (Section 90 PFMA 2019-1)</div>
+        <p style="color: #fca5a5; font-style: italic; font-size: 1.05em;">
+            "The Director of Finance shall publish the Financial Statements, the Audit Opinion, and the Annual Report of the Government <strong>on the official website of the Government</strong> no later than one week after these documents have been laid in Parliament..."
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
+    
     st.markdown("Verify the data directly at the source. The Government's own websites provide the current filing status.")
 
     col1, col2, col3 = st.columns(3)
