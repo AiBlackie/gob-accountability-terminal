@@ -400,7 +400,7 @@ with tab1:
 
 
 # ============================================================================
-# TAB 2: PLAIN ENGLISH GLOSSARY
+# TAB 2: PLAIN ENGLISH GLOSSARY (UPDATED WITH SECTION 90 IN PFMA CARD)
 # ============================================================================
 with tab2:
     st.markdown("### 📖 PLAIN ENGLISH GLOSSARY")
@@ -415,7 +415,8 @@ with tab2:
         <div class="terminal-card" style="border-left: 4px solid #fbbf24;">
             <div class="terminal-header" style="color: #fbbf24;">PFMA (Public Finance Management Act)</div>
             <p><strong>What it is:</strong> A law passed in 2019 to govern how the Government collects, spends, and reports public money.</p>
-            <p><strong>Section 88(1):</strong> This specific clause is the "deadline law." It legally requires the Accountant General to hand over the country's financial statements to the Auditor General by July 31st every year.</p>
+            <p><strong>Section 88(1):</strong> This is the "submission deadline law." It legally requires the Accountant General to hand over the country's financial statements to the Auditor General by July 31st every year.</p>
+            <p><strong>Section 90:</strong> This is the "publication law." It requires the Director of Finance to publish the audited Financial Statements on the official Government website within one week of them being laid in Parliament.</p>
         </div>
         """, unsafe_allow_html=True)
 
@@ -439,7 +440,7 @@ with tab2:
         st.markdown("""
         <div class="terminal-card" style="border-left: 4px solid #ef4444;">
             <div class="terminal-header" style="color: #ef4444;">[LF] BADGE (Late Filing)</div>
-            <p><strong>What it means:</strong> Borrowed from financial markets. When a public company fails to file its financial reports on time, the stock exchange tags their ticker symbol with <strong>.LF</strong> to warn investors.</p>
+            <p><strong>What it means:</strong> Borrowed from the New York Stock Exchange (NYSE). When a public company fails to file its required financial reports on time, the exchange appends an <strong>"LF" (Late Filer)</strong> indicator to their ticker symbol to warn investors.</p>
             <p>We apply it here to indicate that the Government's financial reports are past their legal deadline.</p>
         </div>
         """, unsafe_allow_html=True)
